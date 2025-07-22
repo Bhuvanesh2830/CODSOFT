@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>calculator</title>
+    <link rel="stylesheet" href="Level 1 Task 3 Calculator.css">
+</head>
+<body>
+    <center>
+    <div class="boody">
+        <h2>GOW'S CALCULATOR</h2>
+    <div class="container">
+        <input type="text" placeholder="0" id="output">
+        <button onclick="ac()">Ac</button>
+        <button onclick="del()">del</button>
+        <button onclick="display('0')">0</button>
+        <button onclick="display('+')" style="background-color: orange;">+</button>
+        <button onclick="display('7')">7</button>
+        <button onclick="display('8')">8</button>
+        <button onclick="display('9')">9</button>
+        <button onclick="display('-')" style="background-color: orange;">-</button>
+        <button onclick="display('4')">4</button>
+        <button onclick="display('5')">5</button>
+        <button onclick="display('6')">6</button>
+        <button onclick="display('*')" style="background-color: orange;">*</button>
+        <button onclick="display('1')">1</button>
+        <button onclick="display('2')">2</button>
+        <button onclick="display('3')">3</button>
+         <button onclick="display('/')" style="background-color: orange;">/</button>
+        <button onclick="calc('calcu')" class="cal" >cal=</button>
+
+       
+    </div>
+    </div>
+    </center>
+    <script>
+           let output1=document.getElementById("output");
+           function display(num){
+            output1.value += num;
+           }
+
+           function calc(){
+            try{
+                output1.value=eval(output1.value);
+            }
+            catch(error)
+            {
+                alert("give correct arthimatic function")
+            }
+           }
+
+           function ac(){
+            output1.value = "";
+           }
+
+           function del(){
+            output1.value=output1.value.slice(0,-1);
+           }
+
+    </script>
+</body>
+</html>
