@@ -1,0 +1,51 @@
+.one{
+  background-color: black;
+  color: goldenrod;
+  display: block;
+  cursor: pointer;
+  padding: 8px;
+}
+
+li,.o,p{
+    display: inline;
+    padding-right: 10px;
+}
+.o{
+    margin-left: 36%;
+}
+li:hover{
+    background-color: wheat;
+}
+
+body{
+    background-color: gray;
+}
+.two{
+    border: solid;
+    border-color: black;
+    border-radius: 2px;
+    height: 200px;
+    width: 500px;
+    margin-top: 20px;
+    border-radius: 60px;
+    margin-left: 30%;
+    background-color: black;
+    color: bisque;
+    margin-top: 70px;
+}
+h1,h3{
+    text-align: center;
+
+}
+.about{
+    margin-top: 15%;
+    margin-left: 35%;
+    color: goldenrod;
+}
+.h{
+    margin-right: 54%;
+    margin-bottom: 60px
+}
+b{
+    background-color: black;
+}
