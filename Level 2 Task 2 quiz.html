@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>quiz🧠</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <center>
+    <div class="app">
+        <h1>Quiz🧠</h1>
+        <a>___________________________________________________________</a>
+        <div id="quiz">
+        <h3 id="question">simple quiz</h3>
+        <div id="answerbtn">
+            <button class="btn">Answer 1</button>
+            <button class="btn">Answer 2</button>
+            <button class="btn">Answer 3</button>
+            <button class="btn">Answer 4</button>
+        </div>
+        <button id="nxtbtn">Next</button>
+    </div>
+    </div>
+    </center>
+</body>
+</html>
+
+
+
+<style>
+    *{
+    font-family: sans-serif;
+    box-sizing: border-box;
+
+}
+
+body{
+    background-color: rgb(41, 20, 132);
+}
+.app{
+     background-color: white;
+     width: 560px;
+     padding: 20px;
+     border-radius: 15px;
+     margin-top: 80px;
+
+}
+
+.app h1{
+    font-size: 30px;
+    font-weight: 800;
+    text-align: center;
+}
+button{
+    background-color: white;
+    width: 400px;
+    height: 50px;
+    border-radius: 15px;
+    margin-top: 15px;
+    text-align: left;
+    border: solid 2px;
+    border-color: black;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 700;
+}
+button:hover:not([disabled]){
+    background-color: black;
+    color: white;
+}
+button.disabled{
+    cursor: no-drop;
+}
+#nxtbtn{
+      background-color: rgb(41, 20, 132);
+      color: white;
+      border-radius: 10px;
+      width: 180px;
+      height: 30px;
+      text-align: center;
+      display: none;
+      
+
+}
+
+.correct{
+    background-color: rgb(30, 213, 30);
+    color: white;
+}
+.incorrect{
+    background-color: rgb(190, 11, 11);
+    color: white;
+}
+</style>
+
+
+
+
+<script>
+    const questions =[
+{
+    question: "who is the ceo of google ?",
+    answers:[
+        { text: "sundhar pichai", correct: true},
+        { text: "Elon musk", correct: false},
+        { text: "aambani", correct: false},
+        { text: "Bhuvanesh", correct: false},
+
+    ]
+},
+
+{
+     question: " which is fastest land animal ? " ,
+    answers:[
+        { text: "Falco", correct: false},
+        { text: "ostrich", correct: false},
+        { text: "Cheetah", correct: true},
+        { text: "humming bird", correct: false},
+
+    ]
+
+},
+
+{
+     question: "Find the odd one out",
+    answers:[
+        { text: "Tomato", correct: false},
+        { text: "Apple", correct: true},
+        { text: "Carrot", correct: false},
+        { text: "Beetroot", correct: false},
+
+    ]
+},
+
+{
+         question: "Say the Answer of this sum 45*45 ",
+    answers:[
+        { text: "1000", correct: false},
+        { text: "2024", correct: false},
+        { text: "2010", correct: false},
+        { text: "2025", correct: true},
+
+    ]
+
+},
+
+
+{
+             question: "Which animal is the largest animal in the world",
+    answers:[
+        { text: "Elephant", correct: false},
+        { text: "Tiger", correct: false},
+        { text: "Shark", correct: false},
+        { text: "Blue whale", correct: true},
+
+    ]
+
+}
+
+];
+const questionElement = document.getElementById("question");
+const answerbutton =document.getElementById("answerbtn");
+const nextbutton = document.getElementById("nxtbtn");
+
+let currentquestionindex = 0;
+let score =0;
+
+function startquiz(){
+    currentquestionindex=0;
+    score=0;
+    nextbutton.innerHTML="next";
+    showquestion();
+
+}
+
+function showquestion(){
+    resetstate();
+    let currentquestion = questions[currentquestionindex];
+    let questionno = currentquestionindex + 1;
+    questionElement.innerHTML = questionno +". "+ currentquestion.
+    question;
+    
+
+    currentquestion.answers.forEach( answer => {
+     const button =document.createElement("button");
+     button.innerHTML = answer.text;
+     button.classList.add("btn"); 
+     answerbutton.appendChild(button);
+     if(answer.correct){
+        button.dataset.correct = answer.correct;
+     }
+     button.addEventListener("click",selectanswer);
+    });
+}
+
+function resetstate(){
+    nextbutton.style.display = "none" ;
+    while(answerbutton.firstChild){
+        answerbutton.removeChild(answerbutton.firstChild);
+    }
+}
+
+
+function selectanswer(e){
+    const selectedbtn = e.target;
+    const iscorrect = selectedbtn.dataset.correct === "true";
+    if(iscorrect){
+        selectedbtn.classList.add("correct");
+        score++;
+    }
+    else{
+        selectedbtn.classList.add("incorrect");
+    }
+    Array.from(answerbutton.children).forEach(button =>{
+        if(button.dataset.correct === "true"){
+            button.classList.add("correct");
+        }
+        button.display = true;
+    });
+    nextbutton.style.display = "block"
+}
+
+function showscore(){
+    resetstate();
+    questionElement.innerHTML = `you scored ${score} out of ${questions.length}`;
+    nextbutton.innerHTML = "restart again";
+    nextbutton.style.display="block";
+}
+
+function handlenextbutto(){
+    currentquestionindex++;
+    if(currentquestionindex < questions.length){
+        showquestion();
+
+    }else{
+        showscore();
+    }
+}
+
+nextbutton.addEventListener("click",()=>{
+    if(currentquestionindex < questions.length){
+        handlenextbutto();
+     
+    }
+
+    else{
+        startquiz();
+    }
+});
+
+startquiz();
+
+
+</script>
